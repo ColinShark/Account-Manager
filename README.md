@@ -11,9 +11,9 @@ Obtain them from your Google Projects page.
 
 * Create a copy of the Template and save the Sheet Key from the URL into the [AccountManager.py](AccountManager.py#L13). (Example: `7RItXr-RybUchxTXFtTPbAGKim-PbEe6oiGVkJP8NoJ2`)
 * Go [here](https://console.cloud.google.com/apis/dashboard) and create a new project, if you don't want to use an existing one.
-** Download the credentials and put the filename as a string into the [AccountManager.py](AccountManager.py#L14).
+  * Download the credentials and put the filename as a string into the [AccountManager.py](AccountManager.py#L14).
 * Go [here](https://steamcomunity.com/dev/apikey) and get your own API Key for use with this script.
-* ** Put the API Key from Steam in the [AccountManager.py](AccountManager.py#L17).
+  * Put the API Key from Steam in the [AccountManager.py](AccountManager.py#L17).
 * If you want the script to be executed automatically, put the files on a remote server and set up a [cronjob](https://google.com/search?q=how+to+set+up+a+cronjob).
 
 If all went well, the Sheet get's updated with the current amount of game bans on the account. This should happen instantly.
