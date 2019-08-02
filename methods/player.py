@@ -1,5 +1,6 @@
 """Module to get the Players from Steam API"""
 
+
 class Player:
     """A Player as returned by the Steam API"""
 
@@ -21,7 +22,7 @@ class Player:
 
     def __repr__(self):
         return '<%s ID: %s>' % (self.__class__.__name__,
-                                   self.steam_id)
+                                self.steam_id)
 
     @classmethod
     def from_dict(self, api_response: list):
@@ -36,6 +37,7 @@ class Player:
                        number_of_game_bans=int(player["NumberOfGameBans"]),
                        economy_ban=bool(player["EconomyBan"])))
         return players
+
 
 """ Example Response from the Steam API
 {

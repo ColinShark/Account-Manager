@@ -1,7 +1,5 @@
 import requests
 
-from .player import Player
-
 API = "http://api.steampowered.com/ISteamUser/GetPlayerBans/v1/"
 
 
