@@ -45,7 +45,11 @@ class Sheet:
             c.value
             for c
             in self.sheet.range(
-                '{0}6:{0}{1}'.format(self.url_col.upper(), 5+len(cells)))
+                '{0}6:{0}{1}'.format(
+                    self.url_col.upper(),
+                    1+len(cells)
+                )
+            )
         ]
 
     def update_profiles(self, players: list):
