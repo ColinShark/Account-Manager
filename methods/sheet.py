@@ -7,7 +7,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 SCOPE = ['https://spreadsheets.google.com/feeds',
          'https://www.googleapis.com/auth/drive']
 
-STEAMID_REGEX = re.compile(r'\d{17}')
+STEAMID_REGEX = re.compile(r'(\d+)')
 
 
 class Sheet:
@@ -39,25 +39,23 @@ class Sheet:
         self.sheet = gc.open_by_key(sheet_key).sheet1
 
     def get_profile_links(self):
-        col = ascii_lowercase.index(self.url_col.lower())
+        # +1 needed to get in the correct column. Index starts with 0, not 1.
+        col = ascii_lowercase.index(self.url_col.lower()) + 1
         cells = self.sheet.col_values(col)[5:]
-        return [
-            c.value
-            for c
-            in self.sheet.range(
-                '{0}6:{0}{1}'.format(
-                    self.url_col.upper(),
-                    1+len(cells)
-                )
+        returning_cells = list()
+        for cell in self.sheet.range(
+            "{0}6:{0}{1}".format(
+                self.url_col.upper(),
+                5+len(cells)
             )
-        ]
+        ):
+            returning_cells.append(cell.value)
+        return returning_cells
 
     def update_profiles(self, players: list):
-        steam_ids = [
-            int(STEAMID_REGEX.search(x).group(0))
-            for x
-            in self.get_profile_links()
-        ]
+        steam_ids = list()
+        for steam_id in self.get_profile_links():
+            steam_ids.append(int(STEAMID_REGEX.search(steam_id).group(0)))
 
         players = sorted(players,
                          key=lambda player: steam_ids.index(player.steam_id))
