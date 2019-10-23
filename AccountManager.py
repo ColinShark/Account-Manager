@@ -5,9 +5,11 @@ from methods.steam import Steam
 # Put your SheetID and the downloaded credentials from your
 # Google Project here. Just keep it as a string.
 sheet = Sheet(
-    sheet_key='<Sheet key from spreadsheet URL>',
-    credentials='<Authentication File-name>.json',
-    url_col='N', ban_col='O')
+    sheet_key="<Sheet key from spreadsheet URL>",
+    credentials="<Authentication File-name>.json",
+    url_col="N",
+    ban_col="O",
+)
 
 # This is your Steam API key. Get your own from
 # https://steamcommunity.com/dev/apikey

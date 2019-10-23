@@ -8,9 +8,8 @@ class Steam:
         self.api_key = api_key
 
     def __repr__(self):
-        return '<%s - API: %s>' % (self.__class__.__name__, self.api_key)
+        return "<%s - API: %s>" % (self.__class__.__name__, self.api_key)
 
     def fetch_player_bans(self, steam_ids: list):
-        params = {'key': self.api_key,
-                  'steamids': ','.join(steam_ids)}
-        return requests.get(API, params).json()['players']
+        params = {"key": self.api_key, "steamids": ",".join(steam_ids)}
+        return requests.get(API, params).json()["players"]
