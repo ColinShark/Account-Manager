@@ -1,36 +1,50 @@
 # Account Manager
 
-This is not a manager that organizes the accounts for you. This project just aims to get the amount of game bans into your Google Spreadsheet you (should have) obtained from the template linked below.
+This is not a manager that organizes your accounts.
+This code only updates the Steam game bans of your account(s) in a [Google Spreadsheet][TEMPLATE] via the Steam API for you.
 
-Don't touch the files in the methods folder, those are critical and rows/colums are hard-coded.
+## Setup
 
-## Usage
+1. Download this repository, either as [`.zip`][ZIP] or via `git clone`
+2. Install required modules with `pip install -r requirements.txt`
+3. Open the [Spreadsheet template][TEMPLATE] and copy it
+    * Hit "File" in the top left
+    * Click on "Make a copy"
+4. Create Signed Credentials for use with the Google API
+    * Follow the first three steps [from gspread's documentation][GSPREAD]
+5. Save the acquired `.json` as `credentials.json` into the repositorys root
+6. Copy the example config to `config.ini`
+7. [Set up a cronjob][CRON] for whatever is best for you.
+    * *[Every 30 minutes][30M] suits best in my opinion*
 
-Install the required Python Packages.
+If you have populated your spreadsheet with some accounts and execute the script (`python accmgr.py`) you should see the Bans column update accordingly (given you have Game Banned accounts linked).
+The Template is populated with some accounts as a "Demo".
 
-* `requests`
-* `gspread`
-* `oauth2client` (deprecated)
-  * `oauthlib`
-  * `google-auth`
+## Screenshot(s)
 
-Set up your Spreadsheet from the template. You will need an access token file from Google to access your Spreadsheet with this.
-Obtain them from your Google Projects page.
-
-* Create a copy of the Template and save the Sheet Key from the URL into the [AccountManager.py](AccountManager.py#L8).
-  * (Example: `7RItXr-RybUchxTXFtTPbAGKim-PbEe6oiGVkJP8NoJ2`)
-* Go [here](https://console.cloud.google.com/apis/dashboard) and create a new project, if you don't want to use an existing one.
-  * Download the credentials and put the filename as a string into the [AccountManager.py](AccountManager.py#L9).
-* Go [here](https://steamcomunity.com/dev/apikey) and get your own API Key for use with this script.
-  * Put the API Key from Steam in the [AccountManager.py](AccountManager.py#L13).
-* If you want the script to be executed automatically, put the files on a remote server and set up a [cronjob](https://google.com/search?q=how+to+set+up+a+cronjob).
-
-If all went well, the Sheet get's updated with the current amount of game bans on the account. This should happen instantly.
+[<img src="https://i.imgur.com/1DDMMNj.png" alt="An Example Overview">][TEMPLATE]
 
 ## Credits
 
-RazeN for the idea. That's pretty much it :P
+RazeN for the idea and [his template][RAZEN]
+
+Shoutout to the [Cathook Team][CAT]
+([Account Generator][ACCGEN] / [Telegram Group][SAG_TG])
 
 ## License
 
-**[GPLv3](COPYING)**
+[WTFPL] - What The F**k to Public License
+
+Literally do as you please. I'd kindly ask you to include credits, if you make something inspired by this, but it's by no means obligatory.
+
+
+[TEMPLATE]: https://docs.google.com/spreadsheets/d/16t5A9dJL3pdU2hJNTPNl2ilquFnAw6C-O3PpkAbPCtM/edit?usp=sharing
+[GSPREAD]: https://gspread.readthedocs.io/en/latest/oauth2.html#using-signed-credentials
+[ZIP]: https://github.com/ColinTheShark/Account-Manager/archive/master.zip
+[CRON]: https://google.com/search?q=how+to+set+up+a+cronjob
+[30M]: https://crontab.guru/#*/30_*_*_*_*
+[RAZEN]: https://gist.github.com/RazenIW/4e896edaea5b891b19c0c4fc556f53b7
+[CAT]: https://cathook.club
+[ACCGEN]: https://accgen.cathook.club
+[SAG_TG]: https://t.me/sag_bot_chat
+[WTFPL]: LICENSE
