@@ -47,6 +47,5 @@ class Player(object):
                 number_of_game_bans=int(player["NumberOfGameBans"]),
                 economy_ban=bool(player["EconomyBan"]),
             )
-            for player
-            in api_response
+            for player in api_response
         ]
