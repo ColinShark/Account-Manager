@@ -1,3 +1,4 @@
+from time import strftime, localtime
 from configparser import ConfigParser
 
 from utils.sheet import Sheet
@@ -19,4 +20,8 @@ profile_urls = sheet.get_profile_links()
 player_bans = steam.fetch_player_bans(profile_urls)
 players = Player().from_dict(player_bans)
 updated = sheet.update_game_bans(players)
-print("Updated Cells:", updated["updatedCells"])
+print(
+    strftime("%y-%m-%d %H:%M:%S", localtime()),
+    "Updated Cells:",
+    updated["updatedCells"],
+)
