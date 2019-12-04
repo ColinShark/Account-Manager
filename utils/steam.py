@@ -24,5 +24,9 @@ class Steam:
         Returns:
             list -- A list of dicts, containing information about Player Bans
         """
-        params = {"key": self.api_key, "steamids": ",".join(steam_ids)}
-        return requests.get(STEAM_API, params).json()["players"]
+        players = []
+        for i in range(0, len(steam_ids), 100):
+            params = {"key": self.api_key, "steamids": ",".join(steam_ids[i : i + 100])}
+            for player in requests.get(STEAM_API, params).json()["players"]:
+                players.append(player)
+        return players
